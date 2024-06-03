@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  name: String,
   firstName: String,
+  name: String,
 });
 
 const UserModel = mongoose.model("users", userSchema);
