@@ -1,8 +1,9 @@
-import UserModel from "../models/users.js";
+// userController.js
+import UserModel from "../models/userModel.js";
 
 /**
  * @swagger
- * /allusers/getAllUsers:
+ * /api/users/getAllUsers:
  *   get:
  *     summary: Retrieve a list of users
  *     description: Retrieve a list of users. Can be used to populate a list of fake users when prototyping or testing an API.

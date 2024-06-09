@@ -1,10 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRoutes from "./src/routes/userRoutes.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import cors from "cors";
+
+// import userRoutes from "./routes/userRoutes.js";
+import appRoutes from "./src/routes/appRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -50,7 +52,10 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "https://testdb-fajc.onrender.com",
+        url: "https://milk-delivery-api.onrender.com",
+      },
+      {
+        url: "http://localhost:8000",
       },
     ],
   },
@@ -65,4 +70,12 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
-app.use("/allusers", userRoutes);
+// app.use("/allusers", userRoutes);
+app.use("/api", appRoutes);
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
